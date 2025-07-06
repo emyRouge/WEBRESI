@@ -1,0 +1,182 @@
+/* Estilos para la funcionalidad de subida de archivos */
+
+.input-method-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 1px solid #e1e5e9;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.radio-option:hover {
+  background-color: #f8f9fa;
+  border-color: #007bff;
+}
+
+.radio-option input[type="radio"] {
+  margin: 0;
+}
+
+.file-input-container {
+  position: relative;
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-input-display {
+  border: 2px dashed #e1e5e9;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.file-input-display:hover {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+}
+
+.selected-file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #e7f3ff;
+  border: 1px solid #007bff;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.file-info {
+  font-weight: 500;
+  color: #007bff;
+}
+
+.file-size {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.remove-file {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.remove-file:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.file-placeholder {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.upload-progress {
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #007bff;
+  transition: width 0.3s ease;
+  border-radius: 0.25rem;
+}
+
+.progress-text {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.video-preview {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.video-preview-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.video-type-preview {
+  font-weight: 500;
+  color: #495057;
+}
+
+.video-test-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.video-test-link:hover {
+  text-decoration: underline;
+}
+
+/* Spinner para botones */
+.btn-spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input-method-selector {
+    flex-direction: column;
+  }
+
+  .video-preview-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
