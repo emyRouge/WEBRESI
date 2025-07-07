@@ -30,7 +30,7 @@ const Header = () => {
         <div className="header-content">
           {/* Logo compacto */}
           <Link to="/" className="header-brand">
-            <img src="/logo.png" alt="Resiliente Logo" className="header-logo" />
+            <img src="/public/logo.png" alt="Resiliente Logo" className="header-logo" />
             <div className="header-text">
               <span className="header-title">Resiliente</span>
               <span className="header-subtitle">Café con propósito</span>
