@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import apiService from "../services/api"
 import LoadingSpinner from "../components/LoadingSpinner"
 import ErrorMessage from "../components/ErrorMessage"
-import { ShoppingCart, Tag, Star, Search, Filter, ShoppingBag, ArrowRight } from "lucide-react"
+import { Tag, Star, Search, Filter, ShoppingBag, Eye } from "lucide-react"
 import "../styles/store.css"
 const Store = () => {
   const [productos, setProductos] = useState([])
@@ -159,8 +159,8 @@ const Store = () => {
                     {producto.descuento && <div className="discount-badge">-{producto.descuento}%</div>}
                     <div className="product-overlay">
                       <button className="view-btn">
-                        <ShoppingCart size={20} />
-                        <span>Ver producto</span>
+                        <Eye size={20} />
+                        <span>Ver detalles</span>
                       </button>
                     </div>
                   </div>
@@ -202,9 +202,9 @@ const Store = () => {
 
                   {/* Acciones */}
                   <div className="product-actions">
-                    <button className="add-cart-btn">
-                      <span>Agregar al carrito</span>
-                      <ArrowRight size={16} />
+                    <button className="view-details-btn">
+                      <Eye size={16} />
+                      <span>Ver detalles</span>
                     </button>
                   </div>
                 </div>
