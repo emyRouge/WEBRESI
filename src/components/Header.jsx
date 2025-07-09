@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 import { User, Menu, X } from "lucide-react"
 import { useState } from "react"
 import "../styles/header.css"
+import logo from './logo.png';
 
 const Header = () => {
   const location = useLocation()
@@ -30,7 +31,7 @@ const Header = () => {
         <div className="header-content">
           {/* Logo compacto */}
           <Link to="/" className="header-brand">
-            <img src="/public/logo.png" alt="Resiliente Logo" className="header-logo" />
+          <img src={logo} alt="Resiliente Logo" className="header-logo" />
             <div className="header-text">
               <span className="header-title">Resiliente</span>
               <span className="header-subtitle">Café con propósito</span>
