@@ -1,5 +1,5 @@
-import React from 'react'
-import { AlertCircle, RefreshCw } from 'lucide-react'
+"use client"
+import { AlertCircle, RefreshCw } from "lucide-react"
 
 const ErrorMessage = ({ message, onRetry }) => {
   return (
@@ -17,7 +17,7 @@ const ErrorMessage = ({ message, onRetry }) => {
           </button>
         )}
       </div>
-      
+
       <style jsx>{`
         .error-container {
           min-height: 400px;

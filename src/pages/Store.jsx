@@ -5,7 +5,6 @@ import LoadingSpinner from "../components/LoadingSpinner"
 import ErrorMessage from "../components/ErrorMessage"
 import { ShoppingCart, Tag, Star, Search, Filter, ShoppingBag, ArrowRight } from "lucide-react"
 import "../styles/store.css"
-
 const Store = () => {
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
@@ -147,14 +146,14 @@ const Store = () => {
           <div className="products-grid">
             {productosFiltrados.map((producto, index) => (
               <article key={producto.id} className="product-card" style={{ animationDelay: `${index * 0.1}s` }}>
-                {/* Imagen */}
-                {producto.imagen && (
+                {/* Imagen optimizada */}
+                <div className="product-image-container">
                   <div className="product-image">
                     <img
-                      src={producto.imagen || "/placeholder.svg"}
+                      src={producto.imagen || "/placeholder.svg?height=300&width=400"}
                       alt={producto.nombre}
                       onError={(e) => {
-                        e.target.style.display = "none"
+                        e.target.src = "/placeholder.svg?height=300&width=400"
                       }}
                     />
                     {producto.descuento && <div className="discount-badge">-{producto.descuento}%</div>}
@@ -165,7 +164,7 @@ const Store = () => {
                       </button>
                     </div>
                   </div>
-                )}
+                </div>
 
                 {/* Contenido */}
                 <div className="product-content">
