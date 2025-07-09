@@ -111,13 +111,7 @@ const Login = () => {
 
         <div className="login-footer">
           <div className="test-credentials">
-            <h4>Credenciales de prueba:</h4>
-            <p>
-              <strong>Admin:</strong> direccion@proyectoresiliente.org / admin123
-            </p>
-            <p>
-              <strong>Empleado:</strong> empleado@resiliente.com / empleado123
-            </p>
+           
           </div>
 
           <div className="login-navigation">
