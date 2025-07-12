@@ -1,4 +1,4 @@
-/* ESTILOS PARA PÁGINA ABOUT */
+/* ESTILOS PARA PÁGINA ABOUT - NUEVA PALETA */
 
 .about-container {
   min-height: 100vh;
@@ -7,7 +7,7 @@
 
 /* Hero Section */
 .about-hero {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   color: white;
   padding: 6rem 2rem 4rem;
   text-align: center;
@@ -40,7 +40,7 @@
 }
 
 .hero-highlight {
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  background: linear-gradient(135deg, #49c8f5, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -60,11 +60,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(245, 158, 11, 0.2);
+  background: rgba(73, 200, 245, 0.2);
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
   font-weight: 500;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(73, 200, 245, 0.3);
 }
 
 /* Stats Section */
@@ -85,8 +85,8 @@
   text-align: center;
   padding: 2rem;
   border-radius: 20px;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
   transition: all 0.3s ease;
   animation: fadeInUp 0.6s ease-out;
   animation-fill-mode: both;
@@ -94,13 +94,13 @@
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(73, 200, 245, 0.15);
 }
 
 .stat-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  background: linear-gradient(135deg, #49c8f5, #8b5cf6);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1e293b;
   margin-bottom: 0.5rem;
   font-family: "Playfair Display", serif;
 }
@@ -142,8 +142,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #fef3c7;
-  color: #92400e;
+  background: #dbeafe;
+  color: #1e40af;
   padding: 0.5rem 1rem;
   border-radius: 50px;
   font-size: 0.875rem;
@@ -154,7 +154,7 @@
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1e293b;
   margin-bottom: 2rem;
   font-family: "Playfair Display", serif;
   line-height: 1.2;
@@ -176,7 +176,7 @@
 .image-placeholder {
   width: 300px;
   height: 300px;
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  background: linear-gradient(135deg, #49c8f5, #8b5cf6);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -230,7 +230,7 @@
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(73, 200, 245, 0.1);
 }
 
 .service-icon {
@@ -245,11 +245,11 @@
 }
 
 .service-card.amber .service-icon {
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  background: linear-gradient(135deg, #49c8f5, #8b5cf6);
 }
 
 .service-card.blue .service-icon {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
 }
 
 .service-card.green .service-icon {
@@ -263,7 +263,7 @@
 .service-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1e293b;
   margin-bottom: 1rem;
   font-family: "Playfair Display", serif;
 }
@@ -295,7 +295,7 @@
   text-align: center;
   padding: 2rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   transition: all 0.3s ease;
   animation: fadeInUp 0.6s ease-out;
   animation-fill-mode: both;
@@ -303,7 +303,7 @@
 
 .value-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 10px 25px rgba(73, 200, 245, 0.2);
 }
 
 .value-emoji {
@@ -314,21 +314,21 @@
 .value-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #92400e;
+  color: #1e40af;
   margin-bottom: 0.75rem;
   font-family: "Playfair Display", serif;
 }
 
 .value-description {
   font-size: 0.95rem;
-  color: #a16207;
+  color: #1e40af;
   line-height: 1.5;
 }
 
 /* Weather Section */
 .weather-section {
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   color: white;
 }
 
@@ -374,7 +374,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #f59e0b;
+  color: #49c8f5;
 }
 
 .weather-card p {
@@ -415,14 +415,14 @@
 }
 
 .contact-item svg {
-  color: #f59e0b;
+  color: #49c8f5;
   margin-top: 0.25rem;
 }
 
 .contact-item strong {
   display: block;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #1e293b;
   margin-bottom: 0.25rem;
 }
 
@@ -432,7 +432,7 @@
 }
 
 .cta-card {
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  background: linear-gradient(135deg, #49c8f5, #8b5cf6);
   color: white;
   padding: 3rem;
   border-radius: 20px;
@@ -457,7 +457,7 @@
   align-items: center;
   gap: 0.5rem;
   background: white;
-  color: #ea580c;
+  color: #2563eb;
   padding: 1rem 2rem;
   border: none;
   border-radius: 50px;

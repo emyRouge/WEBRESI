@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #49c8f5 0%, #8b5cf6 100%);
   padding: 20px;
 }
 
@@ -42,14 +42,14 @@
 }
 
 .login-header h1 {
-  color: #2d3748;
+  color: #1e293b;
   margin-bottom: 8px;
   font-size: 28px;
   font-weight: 700;
 }
 
 .login-header p {
-  color: #718096;
+  color: #64748b;
   font-size: 16px;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .form-group label {
-  color: #2d3748;
+  color: #1e293b;
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 14px;
@@ -82,9 +82,9 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #49c8f5;
   background: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(73, 200, 245, 0.1);
 }
 
 .form-group input:disabled {
@@ -103,7 +103,7 @@
 }
 
 .login-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #49c8f5 0%, #8b5cf6 100%);
   color: white;
   border: none;
   padding: 14px 20px;
@@ -117,7 +117,7 @@
 
 .login-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 20px rgba(73, 200, 245, 0.3);
 }
 
 .login-button:disabled {
@@ -133,20 +133,20 @@
 }
 
 .test-credentials {
-  background: #f0fff4;
+  background: #f0f9ff;
   padding: 15px;
   border-radius: 8px;
-  border: 1px solid #c6f6d5;
+  border: 1px solid #bae6fd;
 }
 
 .test-credentials h4 {
-  color: #2f855a;
+  color: #0369a1;
   margin-bottom: 10px;
   font-size: 14px;
 }
 
 .test-credentials p {
-  color: #2f855a;
+  color: #0369a1;
   font-size: 12px;
   margin: 5px 0;
 }
@@ -154,7 +154,7 @@
 .back-to-home-btn {
   background: none;
   border: 1px solid #e2e8f0;
-  color: #4a5568;
+  color: #475569;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -164,7 +164,7 @@
 }
 
 .back-to-home-btn:hover {
-  background: #f7fafc;
+  background: #f8fafc;
   border-color: #cbd5e0;
 }
 

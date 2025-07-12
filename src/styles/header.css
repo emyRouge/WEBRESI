@@ -1,4 +1,4 @@
-/* HEADER COMPACTO Y RESPONSIVO */
+/* HEADER COMPACTO Y RESPONSIVO - NUEVA PALETA */
 
 .page-header {
   background: rgba(255, 255, 255, 0.95);
@@ -54,14 +54,14 @@
 .header-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1e293b;
   font-family: "Playfair Display", serif;
   line-height: 1;
 }
 
 .header-subtitle {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #64748b;
   font-weight: 500;
   line-height: 1;
 }
@@ -88,13 +88,13 @@
 }
 
 .nav-link:hover {
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
+  color: #49c8f5;
+  background: rgba(73, 200, 245, 0.08);
 }
 
 .nav-active {
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.12);
+  color: #49c8f5;
+  background: rgba(73, 200, 245, 0.12);
   font-weight: 600;
 }
 
@@ -106,7 +106,7 @@
   transform: translateX(-50%);
   width: 20px;
   height: 2px;
-  background: #f59e0b;
+  background: #49c8f5;
   border-radius: 1px;
 }
 
@@ -122,7 +122,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #1a1a1a;
+  background: linear-gradient(135deg, #49c8f5, #8b5cf6);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -133,7 +133,7 @@
 }
 
 .login-btn:hover {
-  background: #000000;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   transform: translateY(-1px);
 }
 
@@ -149,8 +149,8 @@
 }
 
 .mobile-menu-btn:hover {
-  border-color: #f59e0b;
-  color: #f59e0b;
+  border-color: #49c8f5;
+  color: #49c8f5;
 }
 
 /* Menú Móvil */
@@ -174,13 +174,13 @@
 }
 
 .mobile-link:hover {
-  background: rgba(245, 158, 11, 0.1);
-  color: #f59e0b;
+  background: rgba(73, 200, 245, 0.1);
+  color: #49c8f5;
 }
 
 .mobile-active {
-  background: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
+  background: rgba(73, 200, 245, 0.15);
+  color: #49c8f5;
   font-weight: 600;
 }
 
