@@ -3,8 +3,8 @@
 import { Link, useLocation } from "react-router-dom"
 import { User, Menu, X } from "lucide-react"
 import { useState } from "react"
-import "../styles/header.css"
-import logo from './logo.png';
+import "../styles/header.css" // Usar el nuevo archivo CSS
+import logo from "./logo.png" // Asegúrate de que esta ruta sea correcta en tu proyecto
 
 const Header = () => {
   const location = useLocation()
@@ -31,7 +31,7 @@ const Header = () => {
         <div className="header-content">
           {/* Logo compacto */}
           <Link to="/" className="header-brand">
-          <img src={logo} alt="Resiliente Logo" className="header-logo" />
+            <img src={logo || "/placeholder.svg"} alt="Resiliente Logo" className="header-logo" />
             <div className="header-text">
               <span className="header-title">Resiliente</span>
               <span className="header-subtitle">Café con propósito</span>
@@ -53,11 +53,10 @@ const Header = () => {
 
           {/* Acciones */}
           <div className="header-actions">
-            <Link to="/login" className="login-btn">
-              <User size={16} />
-              <span className="login-text">Empleados</span>
+            {/* Enlace de login ahora solo con icono */}
+            <Link to="/login" className="login-icon-btn" aria-label="Acceso para empleados">
+              <User size={18} />
             </Link>
-
             <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
