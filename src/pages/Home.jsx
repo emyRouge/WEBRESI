@@ -93,7 +93,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <h1 className="main-title">Resiliente</h1>
+          <h1 className="main-title">Proyecto Resiliente</h1>
           <p className="main-subtitle">Cambia tu café, cambia el mundo</p>
         </header>
 
