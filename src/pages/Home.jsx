@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { ArrowRight, Coffee } from "lucide-react"
+import Footer from "../components/Footer"
 import "../styles/home.css"
 
 const Home = () => {
@@ -133,46 +134,9 @@ const Home = () => {
             ))}
           </div>
         </main>
-
-        {/* Footer Section */}
-        <footer className="home-footer">
-          <div className="social-container">
-            <a
-              href="https://www.facebook.com/profile.php?id=100063500079360"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-              aria-label="Síguenos en Facebook"
-            >
-              <span className="social-icon">📘</span>
-              <span>@Resiliemtemx</span>
-            </a>
-            <a
-              href="https://www.instagram.com/resilienmx/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-              aria-label="Síguenos en Instagram"
-            >
-              <span className="social-icon">📷</span>
-              <span>@resilienmx</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/proyecto-resiliente/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-              aria-label="Conéctate en LinkedIn"
-            >
-              <span className="social-icon">💼</span>
-              <span>Proyecto Resiliente</span>
-            </a>
-          </div>
-          <p className="copyright-text">
-            © {new Date().getFullYear()} Proyecto Resiliente - Todos los derechos reservados
-          </p>
-        </footer>
       </div>
+
+      <Footer />
     </div>
   )
 }

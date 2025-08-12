@@ -1,17 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { Facebook, Instagram, Linkedin, Mail, MapPin } from "lucide-react"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
   const [socialStats, setSocialStats] = useState({
-    facebook: { followers: 18000, loading: false },
-    instagram: { followers: 8900, loading: false },
-    linkedin: { followers: 27, loading: false },
+    facebook: { followers: 18000 },
+    instagram: { followers: 8900 },
+    linkedin: { followers: 27 },
   })
 
-  // Función para formatear números
   const formatNumber = (num) => {
     if (num >= 1000000) {
       return (num / 1000000).toFixed(1) + "M"
@@ -21,7 +20,6 @@ const Footer = () => {
     return num.toString()
   }
 
-  // Simulación de actualización en tiempo real (puedes reemplazar con APIs reales)
   useEffect(() => {
     const updateStats = () => {
       setSocialStats((prev) => ({
@@ -40,71 +38,224 @@ const Footer = () => {
       }))
     }
 
-    // Actualizar cada 30 segundos
     const interval = setInterval(updateStats, 30000)
     return () => clearInterval(interval)
   }, [])
 
+  const styles = {
+    footer: {
+      backgroundColor: "#1a1a1a",
+      color: "#ffffff",
+      fontFamily: "system-ui, -apple-system, sans-serif",
+      padding: "60px 0 30px",
+    },
+    container: {
+      maxWidth: "1200px",
+      margin: "0 auto",
+      padding: "0 24px",
+    },
+    content: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+      gap: "48px",
+      marginBottom: "48px",
+    },
+    brandSection: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+    },
+    brandHeader: {
+      display: "flex",
+      alignItems: "center",
+      gap: "16px",
+      marginBottom: "8px",
+    },
+    logo: {
+      width: "48px",
+      height: "48px",
+      backgroundColor: "#3b82f6",
+      borderRadius: "12px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "20px",
+      fontWeight: "bold",
+      color: "white",
+    },
+    brandText: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    brandTitle: {
+      fontSize: "24px",
+      fontWeight: "700",
+      margin: "0",
+      color: "#ffffff",
+    },
+    brandSubtitle: {
+      fontSize: "14px",
+      color: "#9ca3af",
+      margin: "2px 0 0",
+    },
+    description: {
+      color: "#d1d5db",
+      lineHeight: "1.6",
+      fontSize: "15px",
+      margin: "0",
+    },
+    sectionTitle: {
+      fontSize: "18px",
+      fontWeight: "600",
+      margin: "0 0 24px",
+      color: "#ffffff",
+    },
+    contactList: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "16px",
+    },
+    contactItem: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: "12px",
+      color: "#d1d5db",
+      textDecoration: "none",
+      transition: "color 0.2s ease",
+      padding: "8px 0",
+    },
+    contactItemHover: {
+      color: "#3b82f6",
+    },
+    socialList: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "12px",
+    },
+    socialItem: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      padding: "12px 16px",
+      backgroundColor: "#262626",
+      borderRadius: "8px",
+      textDecoration: "none",
+      color: "#ffffff",
+      transition: "all 0.2s ease",
+      border: "1px solid transparent",
+    },
+    socialItemHover: {
+      backgroundColor: "#333333",
+      transform: "translateY(-1px)",
+    },
+    socialInfo: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "2px",
+    },
+    socialName: {
+      fontSize: "14px",
+      fontWeight: "500",
+    },
+    socialStats: {
+      fontSize: "12px",
+      color: "#9ca3af",
+    },
+    bottom: {
+      borderTop: "1px solid #374151",
+      paddingTop: "24px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: "16px",
+    },
+    copyright: {
+      color: "#9ca3af",
+      fontSize: "14px",
+      margin: "0",
+    },
+    links: {
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+    },
+    link: {
+      color: "#9ca3af",
+      textDecoration: "none",
+      fontSize: "14px",
+      transition: "color 0.2s ease",
+    },
+    linkHover: {
+      color: "#ffffff",
+    },
+  }
+
   return (
-    <footer className="modern-footer">
-      <div className="footer-container">
-        {/* Main Content */}
-        <div className="footer-content">
+    <footer style={styles.footer}>
+      <div style={styles.container}>
+        <div style={styles.content}>
           {/* Brand Section */}
-          <div className="footer-brand">
-            <div className="brand-logo">
-              <div className="logo-circle">
-                <span>R</span>
-              </div>
-              <div className="brand-text">
-                <h3>Resiliente</h3>
-                <p>Emprendimiento Social</p>
+          <div style={styles.brandSection}>
+            <div style={styles.brandHeader}>
+              <div style={styles.logo}>R</div>
+              <div style={styles.brandText}>
+                <h3 style={styles.brandTitle}>Resiliente</h3>
+                <p style={styles.brandSubtitle}>Emprendimiento Social</p>
               </div>
             </div>
-            <p className="brand-description">
+            <p style={styles.description}>
               Somos una organización social que a través de cafeterías apoyamos la creación y fortalecimiento de
               proyectos comunitarios, promoviendo la inclusión laboral.
             </p>
           </div>
 
-          {/* Contact Info */}
-          <div className="footer-section">
-            <h4 className="section-title">Contacto</h4>
-            <div className="contact-items">
-              <a href="mailto:direccion@proyectoresiliente.org" className="contact-item">
-                <Mail size={18} />
+          {/* Contact Section */}
+          <div>
+            <h4 style={styles.sectionTitle}>Contacto</h4>
+            <div style={styles.contactList}>
+              <a
+                href="mailto:direccion@proyectoresiliente.org"
+                style={styles.contactItem}
+                onMouseEnter={(e) => (e.target.style.color = styles.contactItemHover.color)}
+                onMouseLeave={(e) => (e.target.style.color = styles.contactItem.color)}
+              >
+                <Mail size={18} style={{ color: "#3b82f6", marginTop: "2px" }} />
                 <span>direccion@proyectoresiliente.org</span>
               </a>
-              <div className="contact-item">
-                <MapPin size={18} />
+              <div style={styles.contactItem}>
+                <MapPin size={18} style={{ color: "#3b82f6", marginTop: "2px" }} />
                 <span>
                   Av. José María Morelos y Pavón 190
                   <br />
                   Cuernavaca, Morelos 62000
                 </span>
               </div>
-              <div className="contact-item">
-                <Phone size={18} />
-                <span>+52 777 123 4567</span>
-              </div>
             </div>
           </div>
 
-          {/* Social Media */}
-          <div className="footer-section">
-            <h4 className="section-title">Síguenos</h4>
-            <div className="social-grid">
+          {/* Social Media Section */}
+          <div>
+            <h4 style={styles.sectionTitle}>Síguenos</h4>
+            <div style={styles.socialList}>
               <a
                 href="https://www.facebook.com/profile.php?id=100063500079360"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-card facebook"
+                style={styles.socialItem}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = styles.socialItemHover.backgroundColor
+                  e.currentTarget.style.transform = styles.socialItemHover.transform
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = styles.socialItem.backgroundColor
+                  e.currentTarget.style.transform = "none"
+                }}
               >
-                <Facebook size={24} />
-                <div className="social-info">
-                  <span className="social-name">Facebook</span>
-                  <span className="social-handle">@Resiliemtemx</span>
-                  <span className="social-stats">{formatNumber(socialStats.facebook.followers)} seguidores</span>
+                <Facebook size={20} style={{ color: "#1877f2" }} />
+                <div style={styles.socialInfo}>
+                  <div style={styles.socialName}>Facebook</div>
+                  <div style={styles.socialStats}>{formatNumber(socialStats.facebook.followers)} seguidores</div>
                 </div>
               </a>
 
@@ -112,13 +263,20 @@ const Footer = () => {
                 href="https://www.instagram.com/resilienmx/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-card instagram"
+                style={styles.socialItem}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = styles.socialItemHover.backgroundColor
+                  e.currentTarget.style.transform = styles.socialItemHover.transform
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = styles.socialItem.backgroundColor
+                  e.currentTarget.style.transform = "none"
+                }}
               >
-                <Instagram size={24} />
-                <div className="social-info">
-                  <span className="social-name">Instagram</span>
-                  <span className="social-handle">@resilienmx</span>
-                  <span className="social-stats">{formatNumber(socialStats.instagram.followers)} seguidores</span>
+                <Instagram size={20} style={{ color: "#e4405f" }} />
+                <div style={styles.socialInfo}>
+                  <div style={styles.socialName}>Instagram</div>
+                  <div style={styles.socialStats}>{formatNumber(socialStats.instagram.followers)} seguidores</div>
                 </div>
               </a>
 
@@ -126,300 +284,57 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/proyecto-resiliente/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-card linkedin"
+                style={styles.socialItem}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = styles.socialItemHover.backgroundColor
+                  e.currentTarget.style.transform = styles.socialItemHover.transform
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = styles.socialItem.backgroundColor
+                  e.currentTarget.style.transform = "none"
+                }}
               >
-                <Linkedin size={24} />
-                <div className="social-info">
-                  <span className="social-name">LinkedIn</span>
-                  <span className="social-handle">Proyecto Resiliente</span>
-                  <span className="social-stats">{socialStats.linkedin.followers} seguidores</span>
+                <Linkedin size={20} style={{ color: "#0077b5" }} />
+                <div style={styles.socialInfo}>
+                  <div style={styles.socialName}>LinkedIn</div>
+                  <div style={styles.socialStats}>{socialStats.linkedin.followers} seguidores</div>
                 </div>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="footer-bottom">
-          <div className="bottom-content">
-            <p className="copyright">© {currentYear} Proyecto Resiliente - Todos los derechos reservados</p>
-            <div className="footer-links">
-              <a href="/privacidad">Política de Privacidad</a>
-              <a href="/terminos">Términos de Uso</a>
-              <a href="/cookies">Cookies</a>
-            </div>
+        {/* Bottom Section */}
+        <div style={styles.bottom}>
+          <p style={styles.copyright}>© {currentYear} Proyecto Resiliente - Todos los derechos reservados</p>
+          <div style={styles.links}>
+            <a
+              href="/privacidad"
+              style={styles.link}
+              onMouseEnter={(e) => (e.target.style.color = styles.linkHover.color)}
+              onMouseLeave={(e) => (e.target.style.color = styles.link.color)}
+            >
+              Política de Privacidad
+            </a>
+            <a
+              href="/terminos"
+              style={styles.link}
+              onMouseEnter={(e) => (e.target.style.color = styles.linkHover.color)}
+              onMouseLeave={(e) => (e.target.style.color = styles.link.color)}
+            >
+              Términos de Uso
+            </a>
+            <a
+              href="/cookies"
+              style={styles.link}
+              onMouseEnter={(e) => (e.target.style.color = styles.linkHover.color)}
+              onMouseLeave={(e) => (e.target.style.color = styles.link.color)}
+            >
+              Cookies
+            </a>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .modern-footer {
-          background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
-          color: #ffffff;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .modern-footer::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(73, 200, 245, 0.3), transparent);
-        }
-
-        .footer-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-
-        .footer-content {
-          display: grid;
-          grid-template-columns: 2fr 1fr 1.5fr;
-          gap: 60px;
-          padding: 60px 0 40px;
-        }
-
-        @media (max-width: 768px) {
-          .footer-content {
-            grid-template-columns: 1fr;
-            gap: 40px;
-            padding: 40px 0 30px;
-          }
-        }
-
-        /* Brand Section */
-        .footer-brand {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .brand-logo {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          margin-bottom: 10px;
-        }
-
-        .logo-circle {
-          width: 50px;
-          height: 50px;
-          background: linear-gradient(135deg, #49c8f5, #8b5cf6);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: bold;
-          font-size: 24px;
-          color: white;
-          box-shadow: 0 4px 15px rgba(73, 200, 245, 0.3);
-        }
-
-        .brand-text h3 {
-          margin: 0;
-          font-size: 24px;
-          font-weight: 700;
-          background: linear-gradient(135deg, #49c8f5, #8b5cf6);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .brand-text p {
-          margin: 2px 0 0;
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.7);
-          font-weight: 500;
-        }
-
-        .brand-description {
-          color: rgba(255, 255, 255, 0.8);
-          line-height: 1.6;
-          font-size: 15px;
-          margin: 0;
-        }
-
-        /* Section Titles */
-        .section-title {
-          font-size: 18px;
-          font-weight: 600;
-          margin: 0 0 25px;
-          color: #ffffff;
-          position: relative;
-          padding-bottom: 10px;
-        }
-
-        .section-title::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 30px;
-          height: 2px;
-          background: linear-gradient(135deg, #49c8f5, #8b5cf6);
-          border-radius: 1px;
-        }
-
-        /* Contact Items */
-        .contact-items {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .contact-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          color: rgba(255, 255, 255, 0.8);
-          text-decoration: none;
-          transition: all 0.3s ease;
-          padding: 8px 0;
-        }
-
-        .contact-item:hover {
-          color: #49c8f5;
-          transform: translateX(5px);
-        }
-
-        .contact-item svg {
-          margin-top: 2px;
-          flex-shrink: 0;
-          color: #49c8f5;
-        }
-
-        /* Social Grid */
-        .social-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .social-card {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          padding: 15px;
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 12px;
-          text-decoration: none;
-          color: white;
-          transition: all 0.3s ease;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(10px);
-        }
-
-        .social-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(73, 200, 245, 0.2);
-          border-color: rgba(73, 200, 245, 0.3);
-        }
-
-        .social-card.facebook:hover {
-          background: rgba(73, 200, 245, 0.1);
-          border-color: #49c8f5;
-        }
-
-        .social-card.instagram:hover {
-          background: rgba(139, 92, 246, 0.1);
-          border-color: #8b5cf6;
-        }
-
-        .social-card.linkedin:hover {
-          background: rgba(37, 99, 235, 0.1);
-          border-color: #2563eb;
-        }
-
-        .social-card svg {
-          color: #49c8f5;
-        }
-
-        .social-card.instagram svg {
-          color: #8b5cf6;
-        }
-
-        .social-card.linkedin svg {
-          color: #2563eb;
-        }
-
-        .social-info {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-
-        .social-name {
-          font-weight: 600;
-          font-size: 14px;
-        }
-
-        .social-handle {
-          font-size: 13px;
-          color: rgba(255, 255, 255, 0.7);
-        }
-
-        .social-stats {
-          font-size: 12px;
-          color: #49c8f5;
-          font-weight: 500;
-          transition: all 0.3s ease;
-        }
-
-        /* Footer Bottom */
-        .footer-bottom {
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 25px 0;
-        }
-
-        .bottom-content {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-          .bottom-content {
-            flex-direction: column;
-            text-align: center;
-            gap: 15px;
-          }
-        }
-
-        .copyright {
-          margin: 0;
-          color: rgba(255, 255, 255, 0.6);
-          font-size: 14px;
-        }
-
-        .footer-links {
-          display: flex;
-          gap: 25px;
-          flex-wrap: wrap;
-        }
-
-        @media (max-width: 768px) {
-          .footer-links {
-            justify-content: center;
-          }
-        }
-
-        .footer-links a {
-          color: rgba(255, 255, 255, 0.6);
-          text-decoration: none;
-          font-size: 14px;
-          transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-          color: #49c8f5;
-        }
-      `}</style>
     </footer>
   )
 }
