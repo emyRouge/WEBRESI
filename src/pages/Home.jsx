@@ -7,46 +7,64 @@ const Home = () => {
     {
       name: "Conócenos",
       href: "/conocenos",
-      description: "Nuestra historia y misión",
+      description: "Nuestra historia y misión transformadora",
       iconSrc: "/conocenos.png",
-      color: "cyan-blue",
+      color: "warm-amber",
     },
     {
       name: "Talleres",
       href: "/talleres",
-      description: "Capacitación y formación",
+      description: "Capacitación y formación especializada",
       iconSrc: "/talleres.png",
-      color: "blue-indigo",
+      color: "rich-emerald",
     },
     {
       name: "Proyectos de Inclusión",
       href: "/proyectos",
-      description: "Iniciativas que transforman vidas",
+      description: "Iniciativas que transforman comunidades",
       iconSrc: "/proyectos.png",
-      color: "purple-violet",
+      color: "deep-sapphire",
     },
     {
       name: "Blog",
       href: "/blog",
-      description: "Historias y noticias",
+      description: "Historias inspiradoras y noticias",
       iconSrc: "/blog.png",
-      color: "cyan-purple",
+      color: "royal-purple",
     },
     {
       name: "Tienda",
       href: "/tienda",
-      description: "Productos con propósito",
+      description: "Productos artesanales con propósito",
       iconSrc: "/tienda.png",
-      color: "blue-cyan",
+      color: "sunset-coral",
     },
     {
       name: "¿Cómo Apoyar el Proyecto?",
       href: "/apoyo",
-      description: "Únete a nuestra causa",
+      description: "Únete a nuestra causa social",
       iconSrc: "/apoyo.png",
-      color: "purple-blue",
+      color: "ocean-teal",
     },
   ]
+
+  const handleImageError = (e) => {
+    console.log("Error cargando logo desde /logo.png")
+    // Intentar rutas alternativas
+    if (e.target.src.includes("/logo.png")) {
+      e.target.src = "./logo.png"
+    } else if (e.target.src.includes("./logo.png")) {
+      e.target.src = "/public/logo.png"
+    } else {
+      // Si nada funciona, ocultar la imagen y mostrar texto
+      e.target.style.display = "none"
+      e.target.parentElement.classList.add("logo-fallback")
+    }
+  }
+
+  const handleImageLoad = () => {
+    console.log("Logo cargado exitosamente")
+  }
 
   return (
     <div className="home-wrapper">
@@ -70,25 +88,11 @@ const Home = () => {
                 src="/logo.png"
                 alt="Logo Resiliente"
                 className="logo-img"
-                onError={(e) => {
-                  console.log("Error cargando logo desde /logo.png")
-                  // Intentar rutas alternativas
-                  if (e.target.src.includes("/logo.png")) {
-                    e.target.src = "./logo.png"
-                  } else if (e.target.src.includes("./logo.png")) {
-                    e.target.src = "/public/logo.png"
-                  } else {
-                    // Si nada funciona, ocultar la imagen y mostrar texto
-                    e.target.style.display = "none"
-                    e.target.parentElement.classList.add("logo-fallback")
-                  }
-                }}
-                onLoad={() => {
-                  console.log("Logo cargado exitosamente")
-                }}
+                onError={handleImageError}
+                onLoad={handleImageLoad}
               />
               <div className="logo-fallback-content">
-                <Coffee size={50} />
+                <Coffee size={60} />
                 <span>R</span>
               </div>
             </div>
@@ -100,40 +104,33 @@ const Home = () => {
         {/* Menu Grid */}
         <main className="menu-main">
           <div className="cards-grid">
-            {menuItems.map((item, index) => {
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="elegant-menu-card"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="card-content">
-                    <div className={`card-icon-wrapper ${item.color}`}>
-                      <img
-                        src={item.iconSrc || "/placeholder.svg"}
-                        alt={`Icono ${item.name}`}
-                        className="card-icon-img"
-                        style={{
-                          width: "32px",
-                          height: "32px",
-                          objectFit: "contain",
-                          filter: "brightness(0) invert(1)",
-                        }}
-                      />
-                    </div>
-                    <div className="card-text">
-                      <h3 className="card-title-elegant">{item.name}</h3>
-                      <p className="card-description-elegant">{item.description}</p>
-                    </div>
-                    <div className="card-arrow">
-                      <ArrowRight size={16} className="arrow-icon" />
-                    </div>
+            {menuItems.map((item, index) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="elegant-menu-card"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="card-content">
+                  <div className={`card-icon-wrapper ${item.color}`}>
+                    <img
+                      src={item.iconSrc || "/placeholder.svg"}
+                      alt={`Icono ${item.name}`}
+                      className="card-icon-img"
+                      loading="lazy"
+                    />
                   </div>
-                  <div className="card-shine"></div>
-                </Link>
-              )
-            })}
+                  <div className="card-text">
+                    <h3 className="card-title-elegant">{item.name}</h3>
+                    <p className="card-description-elegant">{item.description}</p>
+                  </div>
+                  <div className="card-arrow">
+                    <ArrowRight size={18} className="arrow-icon" />
+                  </div>
+                </div>
+                <div className="card-shine"></div>
+              </Link>
+            ))}
           </div>
         </main>
 
@@ -145,6 +142,7 @@ const Home = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
+              aria-label="Síguenos en Facebook"
             >
               <span className="social-icon">📘</span>
               <span>@Resiliemtemx</span>
@@ -154,6 +152,7 @@ const Home = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
+              aria-label="Síguenos en Instagram"
             >
               <span className="social-icon">📷</span>
               <span>@resilienmx</span>
@@ -163,6 +162,7 @@ const Home = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
+              aria-label="Conéctate en LinkedIn"
             >
               <span className="social-icon">💼</span>
               <span>Proyecto Resiliente</span>
