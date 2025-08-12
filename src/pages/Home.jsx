@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Coffee, GraduationCap, HandHeart, BookOpen, ShoppingBag, Heart, ArrowRight } from "lucide-react"
+import { ArrowRight, Coffee } from "lucide-react"
 import "../styles/home.css"
 
 const Home = () => {
@@ -8,42 +8,42 @@ const Home = () => {
       name: "Conócenos",
       href: "/conocenos",
       description: "Nuestra historia y misión",
-      icon: Coffee,
+      iconSrc: "/conocenos.png",
       color: "cyan-blue",
     },
     {
       name: "Talleres",
       href: "/talleres",
       description: "Capacitación y formación",
-      icon: GraduationCap,
+      iconSrc: "/talleres.png",
       color: "blue-indigo",
     },
     {
       name: "Proyectos de Inclusión",
       href: "/proyectos",
       description: "Iniciativas que transforman vidas",
-      icon: HandHeart,
+      iconSrc: "/proyectos.png",
       color: "purple-violet",
     },
     {
       name: "Blog",
       href: "/blog",
       description: "Historias y noticias",
-      icon: BookOpen,
+      iconSrc: "/blog.png",
       color: "cyan-purple",
     },
     {
       name: "Tienda",
       href: "/tienda",
       description: "Productos con propósito",
-      icon: ShoppingBag,
+      iconSrc: "/tienda.png",
       color: "blue-cyan",
     },
     {
       name: "¿Cómo Apoyar el Proyecto?",
       href: "/apoyo",
       description: "Únete a nuestra causa",
-      icon: Heart,
+      iconSrc: "/apoyo.png",
       color: "purple-blue",
     },
   ]
@@ -101,7 +101,6 @@ const Home = () => {
         <main className="menu-main">
           <div className="cards-grid">
             {menuItems.map((item, index) => {
-              const IconComponent = item.icon
               return (
                 <Link
                   key={item.name}
@@ -111,7 +110,17 @@ const Home = () => {
                 >
                   <div className="card-content">
                     <div className={`card-icon-wrapper ${item.color}`}>
-                      <IconComponent size={20} className="card-icon-svg" />
+                      <img
+                        src={item.iconSrc || "/placeholder.svg"}
+                        alt={`Icono ${item.name}`}
+                        className="card-icon-img"
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                          objectFit: "contain",
+                          filter: "brightness(0) invert(1)",
+                        }}
+                      />
                     </div>
                     <div className="card-text">
                       <h3 className="card-title-elegant">{item.name}</h3>
