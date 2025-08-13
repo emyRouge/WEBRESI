@@ -62,12 +62,13 @@
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem; /* Más espacio entre logo y texto */
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   position: relative;
   z-index: 2;
+  margin-right: 2rem; /* Más espacio hacia la derecha */
 }
 
 .header-brand:hover {
@@ -79,6 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 8%;
 }
 
 .header-logo {
@@ -109,14 +111,33 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
+/* Logo y Branding Premium - MEJORADO */
+.header-logo-large {
+  width: 75px; /* Aumentado de 50px a 75px */
+  height: 75px; /* Aumentado de 50px a 75px */
+  object-fit: contain;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 6px 16px rgba(73, 200, 245, 0.4));
+  position: relative;
+  z-index: 2;
+}
+
+.logo-glow-large {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; /* Aumentado de 60px a 90px */
+  height: 90px; /* Aumentado de 60px a 90px */
+  background: radial-gradient(circle, rgba(73, 200, 245, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.header-brand:hover .logo-glow-large {
+  opacity: 1;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .header-text {
@@ -446,6 +467,17 @@
   .header-title {
     font-size: 1.35rem;
   }
+
+  /* Logo ligeramente más pequeño en tablets */
+  .header-logo-large {
+    width: 65px;
+    height: 65px;
+  }
+
+  .logo-glow-large {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @media (max-width: 968px) {
@@ -465,9 +497,15 @@
     display: block;
   }
 
-  .header-logo {
-    width: 45px;
-    height: 45px;
+  /* Logo ajustado para móvil */
+  .header-logo-large {
+    width: 55px;
+    height: 55px;
+  }
+
+  .logo-glow-large {
+    width: 70px;
+    height: 70px;
   }
 
   .header-title {
@@ -498,12 +536,19 @@
   }
 
   .header-brand {
-    gap: 0.75rem;
+    gap: 1rem; /* Ajustado para móviles pequeños */
+    margin-right: 1rem;
   }
 
-  .header-logo {
-    width: 40px;
-    height: 40px;
+  /* Logo para móviles pequeños */
+  .header-logo-large {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo-glow-large {
+    width: 65px;
+    height: 65px;
   }
 
   .header-title {
@@ -539,9 +584,15 @@
     height: 70px;
   }
 
-  .header-logo {
-    width: 36px;
-    height: 36px;
+  /* Logo para móviles muy pequeños */
+  .header-logo-large {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logo-glow-large {
+    width: 60px;
+    height: 60px;
   }
 
   .header-title {
@@ -571,9 +622,15 @@
     height: 65px;
   }
 
-  .header-logo {
-    width: 32px;
-    height: 32px;
+  /* Logo mínimo para pantallas muy pequeñas */
+  .header-logo-large {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-glow-large {
+    width: 55px;
+    height: 55px;
   }
 
   .header-title {
@@ -603,6 +660,22 @@
 
   .header-subtitle {
     font-size: 0.9rem;
+  }
+
+  /* Logo extra grande para pantallas grandes */
+  .header-logo-large {
+    width: 85px;
+    height: 85px;
+  }
+
+  .logo-glow-large {
+    width: 100px;
+    height: 100px;
+  }
+
+  .header-brand {
+    gap: 1.75rem;
+    margin-right: 2.5rem;
   }
 }
 

@@ -28,15 +28,14 @@ const Header = () => {
   return (
     <header className="page-header">
       {/* Decorative top bar */}
-   
-
+    
       <div className="header-container">
         <div className="header-content">
           {/* Logo expandido y más elegante */}
           <Link to="/" className="header-brand">
             <div className="logo-container">
-              <img src={logo || "/placeholder.svg"} alt="Resiliente Logo" className="header-logo" />
-              <div className="logo-glow"></div>
+              <img src={logo || "/placeholder.svg"} alt="Resiliente Logo" className="header-logo-large" />
+              <div className="logo-glow-large"></div>
             </div>
             <div className="header-text">
               <span className="header-title">Proyecto Resiliente</span>
@@ -66,13 +65,7 @@ const Header = () => {
 
           {/* Acciones mejoradas */}
           <div className="header-actions">
-            {/* Botón de login premium */}
-            <Link to="/login" className="login-btn" aria-label="Acceso para empleados">
-              <User size={18} />
-            
-              <div className="login-glow"></div>
-            </Link>
-
+          
             <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
               <div className="menu-btn-bg"></div>
