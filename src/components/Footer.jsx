@@ -198,9 +198,9 @@ const Footer = () => {
           {/* Brand Section */}
           <div style={styles.brandSection}>
             <div style={styles.brandHeader}>
-              <div style={styles.logo}>R</div>
+           
               <div style={styles.brandText}>
-                <h3 style={styles.brandTitle}>Resiliente</h3>
+                <h3 style={styles.brandTitle}>Proyecto Resiliente</h3>
                 <p style={styles.brandSubtitle}>Emprendimiento Social</p>
               </div>
             </div>
@@ -308,30 +308,7 @@ const Footer = () => {
         <div style={styles.bottom}>
           <p style={styles.copyright}>© {currentYear} Proyecto Resiliente - Todos los derechos reservados</p>
           <div style={styles.links}>
-            <a
-              href="/privacidad"
-              style={styles.link}
-              onMouseEnter={(e) => (e.target.style.color = styles.linkHover.color)}
-              onMouseLeave={(e) => (e.target.style.color = styles.link.color)}
-            >
-              Política de Privacidad
-            </a>
-            <a
-              href="/terminos"
-              style={styles.link}
-              onMouseEnter={(e) => (e.target.style.color = styles.linkHover.color)}
-              onMouseLeave={(e) => (e.target.style.color = styles.link.color)}
-            >
-              Términos de Uso
-            </a>
-            <a
-              href="/cookies"
-              style={styles.link}
-              onMouseEnter={(e) => (e.target.style.color = styles.linkHover.color)}
-              onMouseLeave={(e) => (e.target.style.color = styles.link.color)}
-            >
-              Cookies
-            </a>
+          
           </div>
         </div>
       </div>

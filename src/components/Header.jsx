@@ -33,7 +33,7 @@ const Header = () => {
           <Link to="/" className="header-brand">
             <img src={logo || "/placeholder.svg"} alt="Resiliente Logo" className="header-logo" />
             <div className="header-text">
-              <span className="header-title">Resiliente</span>
+              <span className="header-title">Proyecto Resiliente</span>
               <span className="header-subtitle">Café con propósito</span>
             </div>
           </Link>

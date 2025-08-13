@@ -223,57 +223,7 @@ const About = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="contact-section">
-        <div className="contact-container">
-          <div className="contact-info">
-            <div className="section-badge">
-              <MapPin size={16} />
-              <span>Encuéntranos</span>
-            </div>
-            <h2 className="section-title">Visítanos</h2>
-            <div className="contact-details">
-              <div className="contact-item">
-                <MapPin size={20} />
-                <div>
-                  <strong>Dirección</strong>
-                  <p>Av. Morelos 215, Cuernavaca, México 62000</p>
-                </div>
-              </div>
-              <div className="contact-item">
-                <Mail size={20} />
-                <div>
-                  <strong>Email</strong>
-                  <p>direccion@proyectoresiliente.org</p>
-                </div>
-              </div>
-              <div className="contact-item">
-                <Clock size={20} />
-                <div>
-                  <strong>Horarios</strong>
-                  <p>Lun - Dom: 7:00 AM - 10:00 PM</p>
-                </div>
-              </div>
-              <div className="contact-item">
-                <Award size={20} />
-                <div>
-                  <strong>Rango de precios</strong>
-                  <p>$$ - Accesible para todos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="contact-cta">
-            <div className="cta-card">
-              <h3>¿Tienes dudas o sugerencias?</h3>
-              <p>Estamos encantados de servirte y escuchar tus ideas</p>
-              <button className="cta-button">
-                <Mail size={18} />
-                Enviar mensaje
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+     
     </div>
   )
 }
