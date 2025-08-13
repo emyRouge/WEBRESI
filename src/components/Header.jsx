@@ -1,10 +1,10 @@
 "use client"
 
 import { Link, useLocation } from "react-router-dom"
-import { User, Menu, X } from "lucide-react"
+import { User, Menu, X, Coffee, Heart } from "lucide-react"
 import { useState } from "react"
-import "../styles/header.css" // Usar el nuevo archivo CSS
-import logo from "./logo.png" // Asegúrate de que esta ruta sea correcta en tu proyecto
+import "../styles/header.css"
+import logo from "./logo.png"
 
 const Header = () => {
   const location = useLocation()
@@ -12,12 +12,12 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navigation = [
-    { name: "Conócenos", href: "/conocenos" },
-    { name: "Talleres", href: "/talleres" },
-    { name: "Proyectos", href: "/proyectos" },
-    { name: "Blog", href: "/blog" },
-    { name: "Tienda", href: "/tienda" },
-    { name: "Apoyo", href: "/apoyo" },
+    { name: "Conócenos", href: "/conocenos", icon: Heart },
+    { name: "Talleres", href: "/talleres", icon: Coffee },
+    { name: "Proyectos", href: "/proyectos", icon: Coffee },
+    { name: "Blog", href: "/blog", icon: Coffee },
+    { name: "Tienda", href: "/tienda", icon: Coffee },
+    { name: "Apoyo", href: "/apoyo", icon: Heart },
   ]
 
   // No mostrar header en la página de inicio
@@ -27,55 +27,80 @@ const Header = () => {
 
   return (
     <header className="page-header">
+      {/* Decorative top bar */}
+   
+
       <div className="header-container">
         <div className="header-content">
-          {/* Logo compacto */}
+          {/* Logo expandido y más elegante */}
           <Link to="/" className="header-brand">
-            <img src={logo || "/placeholder.svg"} alt="Resiliente Logo" className="header-logo" />
+            <div className="logo-container">
+              <img src={logo || "/placeholder.svg"} alt="Resiliente Logo" className="header-logo" />
+              <div className="logo-glow"></div>
+            </div>
             <div className="header-text">
               <span className="header-title">Proyecto Resiliente</span>
-              <span className="header-subtitle">Café con propósito</span>
+              <span className="header-subtitle">Café con propósito social</span>
+              <div className="brand-underline"></div>
             </div>
           </Link>
 
-          {/* Navegación desktop */}
+          {/* Navegación desktop mejorada */}
           <nav className="header-nav">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`nav-link ${location.pathname === item.href ? "nav-active" : ""}`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item, index) => {
+              const IconComponent = item.icon
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`nav-link ${location.pathname === item.href ? "nav-active" : ""}`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <IconComponent size={16} className="nav-icon" />
+                  <span>{item.name}</span>
+                  <div className="nav-hover-effect"></div>
+                </Link>
+              )
+            })}
           </nav>
 
-          {/* Acciones */}
+          {/* Acciones mejoradas */}
           <div className="header-actions">
-            {/* Enlace de login ahora solo con icono */}
-            <Link to="/login" className="login-icon-btn" aria-label="Acceso para empleados">
+            {/* Botón de login premium */}
+            <Link to="/login" className="login-btn" aria-label="Acceso para empleados">
               <User size={18} />
+            
+              <div className="login-glow"></div>
             </Link>
+
             <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              <div className="menu-btn-bg"></div>
             </button>
           </div>
         </div>
 
-        {/* Menú móvil */}
+        {/* Menú móvil mejorado */}
         {mobileMenuOpen && (
           <div className="mobile-menu">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`mobile-link ${location.pathname === item.href ? "mobile-active" : ""}`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            <div className="mobile-menu-content">
+              {navigation.map((item, index) => {
+                const IconComponent = item.icon
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`mobile-link ${location.pathname === item.href ? "mobile-active" : ""}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <IconComponent size={18} className="mobile-icon" />
+                    <span>{item.name}</span>
+                    <div className="mobile-link-arrow">→</div>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
         )}
       </div>
