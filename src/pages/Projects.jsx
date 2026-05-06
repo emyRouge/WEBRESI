@@ -219,7 +219,12 @@ const Projects = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="project-image">
-                    <img src={project.image || "/placeholder.svg"} alt={project.title} />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      onError={(e) => { e.target.style.display = "none" }}
+                    />
                     <div className="project-status">
                       <span className={`status-badge ${project.status.toLowerCase()}`}>{project.status}</span>
                     </div>
