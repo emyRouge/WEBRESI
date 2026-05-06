@@ -129,10 +129,14 @@ const About = () => {
             </div>
           </div>
           <div className="story-image">
-            <div className="image-placeholder">
-              <Coffee size={48} />
-              <span>Espacio acogedor</span>
-            </div>
+            <img
+              src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=640&h=500&fit=crop&auto=format&q=80"
+              alt="Interior acogedor de Cafetería Resiliente"
+              loading="lazy"
+              onError={(e) => {
+                e.target.style.display = "none"
+              }}
+            />
           </div>
         </div>
       </section>

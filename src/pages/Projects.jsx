@@ -28,7 +28,7 @@ const Projects = () => {
       impact: "150+ jóvenes capacitados",
       duration: "6 meses",
       status: "Activo",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=600&h=220&fit=crop&auto=format&q=80",
       details: [
         "Certificación profesional reconocida",
         "Prácticas en cafeterías locales",
@@ -46,7 +46,7 @@ const Projects = () => {
       impact: "85% tasa de empleabilidad",
       duration: "Permanente",
       status: "Activo",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=220&fit=crop&auto=format&q=80",
       details: [
         "Evaluación de habilidades personalizada",
         "Adaptación de puestos de trabajo",
@@ -64,7 +64,7 @@ const Projects = () => {
       impact: "50+ familias beneficiadas",
       duration: "Anual",
       status: "Activo",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=220&fit=crop&auto=format&q=80",
       details: [
         "Precios 30% por encima del mercado",
         "Capacitación en cultivo orgánico",
@@ -82,7 +82,7 @@ const Projects = () => {
       impact: "200+ personas formadas",
       duration: "3 meses",
       status: "Activo",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=220&fit=crop&auto=format&q=80",
       details: [
         "Niveles básico, intermedio y avanzado",
         "Instructores certificados",
@@ -100,7 +100,7 @@ const Projects = () => {
       impact: "25 proyectos incubados",
       duration: "12 meses",
       status: "Activo",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&h=220&fit=crop&auto=format&q=80",
       details: ["Mentoría especializada", "Financiamiento semilla", "Red de contactos", "Seguimiento a largo plazo"],
     },
     {
@@ -113,7 +113,7 @@ const Projects = () => {
       impact: "300+ beneficiarios",
       duration: "Permanente",
       status: "Activo",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=220&fit=crop&auto=format&q=80",
       details: [
         "Alfabetización digital básica",
         "Talleres de finanzas personales",
