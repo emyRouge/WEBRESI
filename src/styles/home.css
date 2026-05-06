@@ -513,6 +513,11 @@
 
 /* Responsive mejorado */
 @media (max-width: 768px) {
+  /* background-attachment: fixed es muy lento en mobile — se cambia a scroll */
+  .home-background {
+    background-attachment: scroll;
+  }
+
   .cards-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;

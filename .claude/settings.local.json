@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\emili\\\\Desktop\\\\WEBRESI\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\emili\\\\Desktop\\\\WEBRESI\" -Recurse | ForEach-Object { $_.FullName })",
+      "Bash(npm run *)",
+      "Bash(npm install *)"
+    ]
+  }
+}

@@ -1,38 +1,61 @@
-"use client"
 import { useState, useEffect } from "react"
-import apiService from "../services/api"
-import LoadingSpinner from "../components/LoadingSpinner"
-import ErrorMessage from "../components/ErrorMessage"
-import { Calendar, Clock, Users, GraduationCap, ArrowRight, MapPin, Award } from 'lucide-react'
+import { Calendar, Clock, Users, GraduationCap, ArrowRight, MapPin, Award } from "lucide-react"
 import "../styles/talleres.css"
+
+const TALLERES_PRUEBA = [
+  {
+    id: 1,
+    nombre: "Barismo Profesional — Nivel I",
+    descripcion:
+      "Aprende las bases del café de especialidad: molienda, extracción, perfiles de tostado y técnicas de espresso. Ideal para quienes inician su carrera en el mundo del café.",
+    fechaInicio: "2026-06-08",
+    fechaFin: "2026-06-26",
+    imagen:
+      "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=600&h=360&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 2,
+    nombre: "Lengua de Señas Mexicana — Básico",
+    descripcion:
+      "Introducción a la LSM para comunicarte en tu entorno laboral y social. Aprende el alfabeto, vocabulario esencial y frases del día a día con instructores certificados.",
+    fechaInicio: "2026-07-06",
+    fechaFin: "2026-08-01",
+    imagen:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=360&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 3,
+    nombre: "Emprendimiento Social con Propósito",
+    descripcion:
+      "Diseña y lanza proyectos con impacto social sostenible. Veremos modelos de negocio social, finanzas para emprendedores y estrategias de comunicación comunitaria.",
+    fechaInicio: "2026-08-10",
+    fechaFin: "2026-09-11",
+    imagen:
+      "https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&h=360&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 4,
+    nombre: "Arte Latte y Creatividad en el Café",
+    descripcion:
+      "Domina el milk steaming y el latte art: corazones, rosetones, tulipanes y diseños libres. Un taller práctico y creativo para baristas en formación que buscan destacar.",
+    fechaInicio: "2026-09-14",
+    fechaFin: "2026-09-30",
+    imagen:
+      "https://images.unsplash.com/photo-1511920183353-8cd77ccbf8e3?w=600&h=360&fit=crop&auto=format&q=80",
+    status: true,
+  },
+]
 
 const Talleres = () => {
   const [talleres, setTalleres] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  const cargarTalleres = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      const response = await apiService.getTalleres()
-      if (response.tipo === "SUCCESS") {
-        // Filtrar solo talleres activos
-        const talleresActivos = (response.datos || []).filter(taller => taller.status === true)
-        setTalleres(talleresActivos)
-      } else {
-        setTalleres([])
-      }
-    } catch (err) {
-      setError("Error al cargar los talleres. Por favor, intenta de nuevo.")
-      console.error("Error cargando talleres:", err)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   useEffect(() => {
-    cargarTalleres()
+    setTalleres(TALLERES_PRUEBA)
+    setLoading(false)
   }, [])
 
   const formatearFecha = (fechaString) => {
@@ -56,36 +79,26 @@ const Talleres = () => {
     const hoy = new Date()
     const inicio = new Date(fechaInicio)
     const fin = new Date(fechaFin)
-    
-    if (hoy < inicio) {
-      return "upcoming"
-    } else if (hoy >= inicio && hoy <= fin) {
-      return "active"
-    } else {
-      return "finished"
-    }
+    if (hoy < inicio) return "upcoming"
+    if (hoy >= inicio && hoy <= fin) return "active"
+    return "finished"
   }
 
   const getStatusText = (fechaInicio, fechaFin) => {
     const hoy = new Date()
     const inicio = new Date(fechaInicio)
     const fin = new Date(fechaFin)
-    
-    if (hoy < inicio) {
-      return "Próximamente"
-    } else if (hoy >= inicio && hoy <= fin) {
-      return "En curso"
-    } else {
-      return "Finalizado"
-    }
+    if (hoy < inicio) return "Próximamente"
+    if (hoy >= inicio && hoy <= fin) return "En curso"
+    return "Finalizado"
   }
 
   if (loading) {
-    return <LoadingSpinner message="Cargando talleres..." />
-  }
-
-  if (error) {
-    return <ErrorMessage message={error} onRetry={cargarTalleres} />
+    return (
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh" }}>
+        <GraduationCap size={40} style={{ color: "#f59e0b", opacity: 0.5 }} />
+      </div>
+    )
   }
 
   return (
@@ -102,8 +115,8 @@ const Talleres = () => {
             <span className="hero-highlight"> Resiliente</span>
           </h1>
           <p className="hero-description">
-            Nuestros talleres de capacitación y formación están diseñados para empoderar a las comunidades y crear
-            oportunidades de crecimiento personal y profesional.
+            Nuestros talleres de capacitación y formación están diseñados para empoderar a las comunidades
+            y crear oportunidades de crecimiento personal y profesional.
           </p>
         </div>
       </section>
@@ -121,34 +134,36 @@ const Talleres = () => {
         ) : (
           <div className="talleres-grid">
             {talleres.map((taller, index) => (
-              <article key={taller.id} className="taller-card" style={{ animationDelay: `${index * 0.1}s` }}>
+              <article
+                key={taller.id}
+                className="taller-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 {/* Imagen */}
-                {taller.imagen && (
-                  <div className="taller-image">
-                    <img
-                      src={taller.imagen || "/placeholder.svg"}
-                      alt={taller.nombre}
-                      onError={(e) => {
-                        e.target.style.display = "none"
-                      }}
-                    />
-                    <div className="taller-status">
-                      <span className={`status-badge ${getStatusColor(taller.fechaInicio, taller.fechaFin)}`}>
-                        {getStatusText(taller.fechaInicio, taller.fechaFin)}
-                      </span>
-                    </div>
-                    <div className="taller-overlay">
-                      <button className="view-btn">
-                        <Users size={20} />
-                        <span>Ver detalles</span>
-                      </button>
-                    </div>
+                <div className="taller-image">
+                  <img
+                    src={taller.imagen}
+                    alt={taller.nombre}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.style.display = "none"
+                    }}
+                  />
+                  <div className="taller-status">
+                    <span className={`status-badge ${getStatusColor(taller.fechaInicio, taller.fechaFin)}`}>
+                      {getStatusText(taller.fechaInicio, taller.fechaFin)}
+                    </span>
                   </div>
-                )}
+                  <div className="taller-overlay">
+                    <button className="view-btn">
+                      <Users size={20} />
+                      <span>Ver detalles</span>
+                    </button>
+                  </div>
+                </div>
 
                 {/* Contenido */}
                 <div className="taller-content">
-                  {/* Meta información */}
                   <div className="taller-meta">
                     <div className="meta-item">
                       <Calendar size={14} />
@@ -160,13 +175,9 @@ const Talleres = () => {
                     </div>
                   </div>
 
-                  {/* Título */}
                   <h2 className="taller-title">{taller.nombre}</h2>
-
-                  {/* Descripción */}
                   <p className="taller-description">{taller.descripcion}</p>
 
-                  {/* Información adicional */}
                   <div className="taller-info">
                     <div className="info-item">
                       <MapPin size={16} />
@@ -178,7 +189,6 @@ const Talleres = () => {
                     </div>
                   </div>
 
-                  {/* Acciones */}
                   <div className="taller-actions">
                     <button className="register-btn">
                       <span>Más información</span>

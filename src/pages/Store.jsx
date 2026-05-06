@@ -1,42 +1,91 @@
-"use client"
-
 import { useState, useEffect } from "react"
-import apiService from "../services/api"
-import LoadingSpinner from "../components/LoadingSpinner"
-import ErrorMessage from "../components/ErrorMessage"
 import { Tag, Star, Search, Filter, ShoppingBag, Eye, X, ImageOff } from "lucide-react"
+
+const PRODUCTOS_PRUEBA = [
+  {
+    id: 1,
+    nombre: "Blend Resiliente — Café de Especialidad 250g",
+    descripcion:
+      "Mezcla exclusiva de granos de altura de Morelos. Notas de chocolate oscuro, caramelo y frutos rojos. Tueste medio, perfecto para espresso y pour over.",
+    precio: 32000,
+    categoria: "Café",
+    descuento: null,
+    imagen:
+      "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&h=500&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 2,
+    nombre: "Café de Origen Tepoztlán 200g",
+    descripcion:
+      "Single origin cultivado a más de 1,400 msnm. Proceso natural con notas de maracuyá, panela y almendra. Directo del productor, sin intermediarios.",
+    precio: 42000,
+    categoria: "Café",
+    descuento: 10,
+    imagen:
+      "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=500&h=500&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 3,
+    nombre: "Taza Artesanal Resiliente 300ml",
+    descripcion:
+      "Taza de cerámica elaborada por artesanos locales de Cuernavaca. Capacidad 300 ml. Cada pieza es única, con pequeñas variaciones que la hacen irrepetible.",
+    precio: 45000,
+    categoria: "Accesorios",
+    descuento: null,
+    imagen:
+      "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&h=500&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 4,
+    nombre: "Kit de Barismo en Casa",
+    descripcion:
+      "Todo lo que necesitas para preparar café de especialidad: cafetera V60, filtros, molino manual y 100g de nuestro blend exclusivo. El regalo perfecto.",
+    precio: 120000,
+    categoria: "Kits",
+    descuento: 15,
+    imagen:
+      "https://images.unsplash.com/photo-1587734361993-0490c9a7ca09?w=500&h=500&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 5,
+    nombre: "Tote Bag Resiliente — Algodón Orgánico",
+    descripcion:
+      "Bolsa de algodón 100% orgánico con diseño exclusivo. Resistente, lavable y espaciosa. Perfecta para el día a día con propósito social.",
+    precio: 28000,
+    categoria: "Mercancía",
+    descuento: null,
+    imagen:
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=500&h=500&fit=crop&auto=format&q=80",
+    status: true,
+  },
+  {
+    id: 6,
+    nombre: "Playera Unisex — Colección 2026",
+    descripcion:
+      "Camiseta de algodón pima con estampado artesanal de nuestro logo. Disponible en tallas S-XL. Con cada compra apoyas directamente nuestros talleres comunitarios.",
+    precio: 55000,
+    categoria: "Mercancía",
+    descuento: null,
+    imagen:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&auto=format&q=80",
+    status: true,
+  },
+]
 
 const Store = () => {
   const [productos, setProductos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
   const [filtroCategoria, setFiltroCategoria] = useState("todos")
   const [busqueda, setBusqueda] = useState("")
   const [modalAbierto, setModalAbierto] = useState(false)
   const [productoSeleccionado, setProductoSeleccionado] = useState(null)
   const [imageErrors, setImageErrors] = useState({})
 
-  const cargarProductos = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      const response = await apiService.getProductosTienda()
-      if (response.tipo === "SUCCESS") {
-        const productosActivos = response.datos?.filter((producto) => producto.status === true) || []
-        setProductos(productosActivos)
-      } else {
-        setProductos([])
-      }
-    } catch (err) {
-      setError("Error al cargar los productos. Por favor, intenta de nuevo.")
-      console.error("Error cargando productos:", err)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    cargarProductos()
+    setProductos(PRODUCTOS_PRUEBA)
   }, [])
 
   const categorias = ["todos", ...new Set(productos.map((p) => p.categoria).filter(Boolean))]
@@ -74,9 +123,7 @@ const Store = () => {
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === "Escape" && modalAbierto) {
-        cerrarModal()
-      }
+      if (e.key === "Escape" && modalAbierto) cerrarModal()
     }
     if (modalAbierto) {
       document.addEventListener("keydown", handleEscape)
@@ -85,18 +132,7 @@ const Store = () => {
   }, [modalAbierto])
 
   const handleImageError = (productId) => {
-    setImageErrors((prevErrors) => ({
-      ...prevErrors,
-      [productId]: true,
-    }))
-  }
-
-  if (loading) {
-    return <LoadingSpinner message="Cargando productos..." />
-  }
-
-  if (error) {
-    return <ErrorMessage message={error} onRetry={cargarProductos} />
+    setImageErrors((prev) => ({ ...prev, [productId]: true }))
   }
 
   return (
@@ -113,8 +149,8 @@ const Store = () => {
             <span className="hero-highlight"> Resiliente</span>
           </h1>
           <p className="hero-description">
-            Descubre nuestros productos con propósito. Cada compra contribuye a nuestros proyectos de inclusión social y
-            transforma vidas en nuestra comunidad.
+            Descubre nuestros productos con propósito. Cada compra contribuye a nuestros proyectos de
+            inclusión social y transforma vidas en nuestra comunidad.
           </p>
         </div>
       </section>
@@ -123,7 +159,6 @@ const Store = () => {
       <div className="store-content">
         {/* Filtros */}
         <div className="filters-section">
-          {/* Buscador */}
           <div className="search-container">
             <div className="search-box">
               <div className="search-icon">
@@ -144,14 +179,13 @@ const Store = () => {
             </div>
           </div>
 
-          {/* Filtros de categoría */}
           <div className="filters-card">
             <div className="filters-header">
               <Filter size={16} />
               <span>Filtrar por categoría</span>
             </div>
             <div className="filter-buttons">
-              {categorias.map((categoria, index) => (
+              {categorias.map((categoria) => (
                 <button
                   key={categoria}
                   onClick={() => setFiltroCategoria(categoria)}
@@ -177,7 +211,6 @@ const Store = () => {
           <div className="products-grid">
             {productosFiltrados.map((producto) => (
               <article key={producto.id} className="product-card">
-                {/* Imagen */}
                 <div className="product-image">
                   {!producto.imagen || imageErrors[producto.id] ? (
                     <div className="product-placeholder">
@@ -186,12 +219,15 @@ const Store = () => {
                     </div>
                   ) : (
                     <img
-                      src={producto.imagen || "/placeholder.svg"}
+                      src={producto.imagen}
                       alt={producto.nombre}
+                      loading="lazy"
                       onError={() => handleImageError(producto.id)}
                     />
                   )}
-                  {producto.descuento && <div className="discount-badge">-{producto.descuento}%</div>}
+                  {producto.descuento && (
+                    <div className="discount-badge">-{producto.descuento}%</div>
+                  )}
                   <div className="product-overlay">
                     <button className="view-btn" onClick={() => abrirModal(producto)}>
                       <Eye size={20} />
@@ -200,7 +236,6 @@ const Store = () => {
                   </div>
                 </div>
 
-                {/* Contenido */}
                 <div className="product-content">
                   <div className="product-meta">
                     <div className="meta-item">
@@ -239,7 +274,7 @@ const Store = () => {
         )}
       </div>
 
-      {/* Modal de detalle de producto */}
+      {/* Modal */}
       {modalAbierto && productoSeleccionado && (
         <div className="modal-overlay" onClick={cerrarModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -255,7 +290,7 @@ const Store = () => {
                   </div>
                 ) : (
                   <img
-                    src={productoSeleccionado.imagen || "/placeholder.svg"}
+                    src={productoSeleccionado.imagen}
                     alt={productoSeleccionado.nombre}
                     onError={() => handleImageError(productoSeleccionado.id)}
                   />
@@ -308,17 +343,14 @@ const Store = () => {
           </div>
         </div>
       )}
-      <style jsx>{`
-        /* ESTILOS LIMPIOS Y OPTIMIZADOS PARA TIENDA - PALETA AZUL */
-
+      <style>{`
         .store-container {
           min-height: 100vh;
           background: #fafafa;
         }
 
-        /* Hero Section */
         .store-hero {
-          background: linear-gradient(135deg, #1e293b 0%, #334155 100%); /* Tonos de gris oscuro */
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
           color: white;
           padding: 6rem 2rem 4rem;
           text-align: center;
@@ -333,7 +365,7 @@ const Store = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          background: rgba(73, 200, 245, 0.2); /* Azul con transparencia */
+          background: rgba(73, 200, 245, 0.2);
           border: 1px solid rgba(73, 200, 245, 0.3);
           padding: 0.75rem 1.5rem;
           border-radius: 50px;
@@ -352,7 +384,7 @@ const Store = () => {
         }
 
         .hero-highlight {
-          background: linear-gradient(135deg, #49c8f5, #8b5cf6); /* Gradiente azul/púrpura */
+          background: linear-gradient(135deg, #49c8f5, #8b5cf6);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -366,14 +398,12 @@ const Store = () => {
           margin: 0 auto;
         }
 
-        /* Content */
         .store-content {
           max-width: 1200px;
           margin: 0 auto;
           padding: 4rem 2rem;
         }
 
-        /* Filtros */
         .filters-section {
           margin-bottom: 4rem;
           display: flex;
@@ -403,9 +433,9 @@ const Store = () => {
         }
 
         .search-box:focus-within {
-          box-shadow: 0 16px 50px rgba(73, 200, 245, 0.15); /* Sombra azul */
+          box-shadow: 0 16px 50px rgba(73, 200, 245, 0.15);
           transform: translateY(-3px);
-          border-color: #49c8f5; /* Azul */
+          border-color: #49c8f5;
         }
 
         .search-icon {
@@ -419,7 +449,7 @@ const Store = () => {
         }
 
         .search-box:focus-within .search-icon {
-          color: #49c8f5; /* Azul */
+          color: #49c8f5;
           transform: translateY(-50%) scale(1.1);
         }
 
@@ -460,7 +490,7 @@ const Store = () => {
         }
 
         .clear-btn:hover {
-          background: #49c8f5; /* Azul */
+          background: #49c8f5;
           color: white;
           transform: translateY(-50%) scale(1.1);
         }
@@ -486,7 +516,7 @@ const Store = () => {
         }
 
         .filters-header svg {
-          color: #49c8f5; /* Azul */
+          color: #49c8f5;
         }
 
         .filter-buttons {
@@ -497,7 +527,7 @@ const Store = () => {
         }
 
         .filter-btn {
-          padding: 1rem 2rem;
+          padding: 0.875rem 1.75rem;
           border: 2px solid #e5e7eb;
           background: white;
           color: #6b7280;
@@ -507,27 +537,24 @@ const Store = () => {
           cursor: pointer;
           transition: all 0.3s ease;
           text-transform: capitalize;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .filter-btn:hover {
-          border-color: #49c8f5; /* Azul */
+          border-color: #49c8f5;
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .filter-btn.active {
-          background: linear-gradient(135deg, #49c8f5, #8b5cf6); /* Gradiente azul/púrpura */
+          background: linear-gradient(135deg, #49c8f5, #8b5cf6);
           color: white;
-          border-color: #49c8f5; /* Azul */
-          box-shadow: 0 10px 30px rgba(73, 200, 245, 0.25); /* Sombra azul */
+          border-color: transparent;
+          box-shadow: 0 8px 25px rgba(73, 200, 245, 0.25);
           transform: translateY(-2px);
         }
 
-        /* Productos */
         .products-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 2rem;
         }
 
@@ -540,28 +567,26 @@ const Store = () => {
           transition: all 0.4s ease;
           display: flex;
           flex-direction: column;
-          height: 100%;
         }
 
         .product-card:hover {
           transform: translateY(-8px);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-          border-color: #49c8f5; /* Azul */
+          border-color: #49c8f5;
         }
 
         .product-image {
           position: relative;
           width: 100%;
-          height: 280px;
+          height: 260px;
           overflow: hidden;
-          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); /* Tonos de azul claro para fondo de imagen */
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         }
 
         .product-image img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
           transition: transform 0.6s ease;
           display: block;
         }
@@ -574,23 +599,20 @@ const Store = () => {
           position: absolute;
           top: 1rem;
           right: 1rem;
-          background: linear-gradient(135deg, #dc2626, #ef4444); /* Rojo para descuento */
+          background: linear-gradient(135deg, #dc2626, #ef4444);
           color: white;
-          padding: 0.5rem 0.75rem;
-          border-radius: 12px;
+          padding: 0.45rem 0.75rem;
+          border-radius: 10px;
           font-size: 0.75rem;
           font-weight: 700;
           z-index: 3;
-          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+          box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         }
 
         .product-overlay {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.7);
+          inset: 0;
+          background: rgba(0, 0, 0, 0.65);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -609,28 +631,27 @@ const Store = () => {
           align-items: center;
           gap: 0.5rem;
           background: white;
-          color: #1e293b; /* Gris oscuro */
+          color: #1e293b;
           border: none;
-          padding: 1rem 1.5rem;
+          padding: 0.875rem 1.5rem;
           border-radius: 50px;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .view-btn:hover {
-          background: #49c8f5; /* Azul */
+          background: #49c8f5;
           color: white;
           transform: scale(1.05);
         }
 
         .product-content {
-          padding: 2rem;
+          padding: 1.75rem;
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.875rem;
         }
 
         .product-meta {
@@ -642,97 +663,92 @@ const Store = () => {
         .meta-item {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.4rem;
           color: #6b7280;
-          font-size: 0.875rem;
+          font-size: 0.8rem;
           font-weight: 500;
         }
 
         .meta-item svg {
-          color: #49c8f5; /* Azul */
+          color: #49c8f5;
         }
 
         .product-title {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           font-weight: 700;
-          color: #1e293b; /* Gris oscuro */
+          color: #1e293b;
           font-family: "Playfair Display", serif;
           line-height: 1.3;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
-          line-clamp: 2; /* Added for compatibility */
         }
 
         .product-description {
           color: #525252;
           line-height: 1.6;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           display: -webkit-box;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
           flex: 1;
-          line-clamp: 3; /* Added for compatibility */
         }
 
         .price-container {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          margin: 0.5rem 0;
         }
 
         .price-original {
-          color: #6b7280;
+          color: #9ca3af;
           text-decoration: line-through;
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 500;
         }
 
         .price-discount {
-          color: #dc2626; /* Rojo para descuento */
+          color: #dc2626;
           font-weight: 700;
-          font-size: 1.25rem;
+          font-size: 1.2rem;
         }
 
         .price-current {
-          color: #1e293b; /* Gris oscuro */
+          color: #1e293b;
           font-weight: 700;
-          font-size: 1.25rem;
+          font-size: 1.2rem;
         }
 
         .product-actions {
           margin-top: auto;
-          padding-top: 1rem;
+          padding-top: 0.5rem;
         }
 
         .view-details-btn {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          background: linear-gradient(135deg, #49c8f5, #8b5cf6); /* Gradiente azul/púrpura */
+          background: linear-gradient(135deg, #49c8f5, #8b5cf6);
           color: white;
           border: none;
-          padding: 1rem 1.5rem;
+          padding: 0.875rem 1.5rem;
           border-radius: 50px;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           width: 100%;
           justify-content: center;
-          box-shadow: 0 4px 15px rgba(73, 200, 245, 0.2); /* Sombra azul */
         }
 
         .view-details-btn:hover {
-          background: linear-gradient(135deg, #2563eb, #7c3aed); /* Gradiente azul más oscuro en hover */
+          background: linear-gradient(135deg, #2563eb, #7c3aed);
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(73, 200, 245, 0.3); /* Sombra azul más pronunciada */
+          box-shadow: 0 8px 20px rgba(73, 200, 245, 0.3);
         }
 
-        /* Empty State */
         .store-empty {
           display: flex;
           flex-direction: column;
@@ -747,7 +763,7 @@ const Store = () => {
         }
 
         .empty-icon {
-          color: #49c8f5; /* Azul */
+          color: #49c8f5;
           margin-bottom: 2rem;
           opacity: 0.6;
         }
@@ -755,7 +771,7 @@ const Store = () => {
         .store-empty h3 {
           font-size: 1.75rem;
           font-weight: 700;
-          color: #1e293b; /* Gris oscuro */
+          color: #1e293b;
           margin-bottom: 1rem;
           font-family: "Playfair Display", serif;
         }
@@ -767,81 +783,21 @@ const Store = () => {
           line-height: 1.6;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-          .products-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-          }
-
-          .product-content {
-            padding: 1.5rem;
-          }
-
-          .product-image {
-            height: 240px;
-          }
-
-          .filters-card {
-            padding: 2rem;
-          }
-
-          .filter-buttons {
-            gap: 0.75rem;
-          }
-
-          .filter-btn {
-            padding: 0.875rem 1.5rem;
-            font-size: 0.9rem;
-          }
+        .product-placeholder {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+          color: #6b7280;
+          gap: 0.5rem;
         }
 
-        @media (max-width: 480px) {
-          .store-hero {
-            padding: 4rem 1rem 3rem;
-          }
-
-          .store-content {
-            padding: 3rem 1rem;
-          }
-
-          .products-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-          }
-
-          .product-image {
-            height: 220px;
-          }
-
-          .filters-card {
-            padding: 1.5rem;
-          }
-
-          .filter-buttons {
-            gap: 0.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-          }
-
-          .filter-btn {
-            padding: 0.75rem 1.25rem;
-            font-size: 0.85rem;
-            text-align: center;
-          }
-
-          .product-content {
-            padding: 1.25rem;
-          }
-        }
-
-        /* Modal Styles */
         .modal-overlay {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
+          inset: 0;
           background: rgba(0, 0, 0, 0.8);
           display: flex;
           align-items: center;
@@ -849,7 +805,7 @@ const Store = () => {
           z-index: 1000;
           padding: 2rem;
           backdrop-filter: blur(4px);
-          animation: fadeIn 0.3s ease-out;
+          animation: fadeIn 0.25s ease-out;
         }
 
         .modal-content {
@@ -860,15 +816,15 @@ const Store = () => {
           max-height: 90vh;
           overflow-y: auto;
           position: relative;
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
           animation: slideUp 0.3s ease-out;
         }
 
         .modal-close {
           position: absolute;
-          top: 1.5rem;
-          right: 1.5rem;
-          background: rgba(0, 0, 0, 0.1);
+          top: 1.25rem;
+          right: 1.25rem;
+          background: rgba(0, 0, 0, 0.08);
           border: none;
           border-radius: 50%;
           width: 40px;
@@ -877,20 +833,20 @@ const Store = () => {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
           z-index: 10;
-          backdrop-filter: blur(10px);
         }
 
         .modal-close:hover {
-          background: rgba(0, 0, 0, 0.2);
+          background: rgba(239, 68, 68, 0.15);
+          color: #ef4444;
           transform: scale(1.1);
         }
 
         .modal-body {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 3rem;
+          gap: 2.5rem;
           padding: 2rem;
         }
 
@@ -898,7 +854,7 @@ const Store = () => {
           position: relative;
           border-radius: 16px;
           overflow: hidden;
-          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); /* Tonos de azul claro para fondo de imagen */
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
           aspect-ratio: 1;
         }
 
@@ -906,7 +862,6 @@ const Store = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
         }
 
         .modal-discount-badge {
@@ -915,17 +870,16 @@ const Store = () => {
           right: 1rem;
           background: linear-gradient(135deg, #dc2626, #ef4444);
           color: white;
-          padding: 0.75rem 1rem;
-          border-radius: 12px;
-          font-size: 0.875rem;
+          padding: 0.65rem 0.9rem;
+          border-radius: 10px;
+          font-size: 0.85rem;
           font-weight: 700;
-          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
 
         .modal-info {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
         }
 
         .modal-meta {
@@ -935,7 +889,7 @@ const Store = () => {
         }
 
         .modal-title {
-          font-size: 2rem;
+          font-size: 1.75rem;
           font-weight: 700;
           color: #1e293b;
           font-family: "Playfair Display", serif;
@@ -952,31 +906,23 @@ const Store = () => {
           border-bottom: 1px solid #e2e8f0;
         }
 
-        .modal-price .price-original {
-          font-size: 1.25rem;
-        }
-
-        .modal-price .price-discount {
-          font-size: 1.75rem;
-        }
-
-        .modal-price .price-current {
-          font-size: 1.75rem;
-        }
+        .modal-price .price-original { font-size: 1.1rem; }
+        .modal-price .price-discount { font-size: 1.6rem; }
+        .modal-price .price-current { font-size: 1.6rem; }
 
         .modal-description h3,
         .modal-features h3 {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           font-weight: 600;
           color: #1e293b;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.5rem;
           font-family: "Playfair Display", serif;
         }
 
         .modal-description p {
           color: #525252;
           line-height: 1.7;
-          font-size: 1rem;
+          font-size: 0.95rem;
           margin: 0;
         }
 
@@ -988,105 +934,59 @@ const Store = () => {
 
         .modal-features li {
           color: #525252;
-          padding: 0.5rem 0;
+          padding: 0.45rem 0;
           border-bottom: 1px solid #f1f5f9;
           position: relative;
           padding-left: 1.5rem;
+          font-size: 0.9rem;
         }
 
         .modal-features li::before {
           content: "✓";
           position: absolute;
           left: 0;
-          color: #49c8f5; /* Azul */
+          color: #49c8f5;
           font-weight: bold;
         }
 
-        .modal-features li:last-child {
-          border-bottom: none;
-        }
+        .modal-features li:last-child { border-bottom: none; }
 
-        /* Animaciones del modal */
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
+          from { opacity: 0; transform: translateY(30px) scale(0.95); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Estilos para el nuevo div de placeholder */
-        .product-placeholder {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column; /* Para apilar el icono y el texto */
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); /* Tonos de azul claro */
-          color: #6b7280; /* Color para el icono y texto */
-          font-size: 1rem; /* Tamaño de fuente para el texto */
-          text-align: center;
-          padding: 1rem; /* Pequeño padding para que no se pegue al borde */
-        }
-
-        .product-placeholder svg {
-          font-size: 3rem; /* Tamaño del icono */
-          opacity: 0.5; /* Opacidad del icono */
-          margin-bottom: 0.5rem; /* Espacio entre icono y texto */
-        }
-
-        /* Responsive del modal */
         @media (max-width: 768px) {
-          .modal-overlay {
-            padding: 1rem;
-          }
-
-          .modal-body {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 1.5rem;
-          }
-
-          .modal-title {
-            font-size: 1.5rem;
-          }
-
-          .modal-close {
-            top: 1rem;
-            right: 1rem;
-            width: 36px;
-            height: 36px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .modal-content {
-            border-radius: 16px;
-            max-height: 95vh;
-          }
-
-          .modal-body {
-            padding: 1rem;
+          .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 1.5rem;
           }
 
-          .modal-price .price-discount,
-          .modal-price .price-current {
-            font-size: 1.5rem;
+          .modal-overlay { padding: 1rem; }
+          .modal-body {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 1.25rem;
           }
+          .modal-title { font-size: 1.4rem; }
+        }
+
+        @media (max-width: 480px) {
+          .store-hero { padding: 4rem 1rem 3rem; }
+          .store-content { padding: 3rem 1rem; }
+          .products-grid { grid-template-columns: 1fr; }
+          .filters-card { padding: 1.5rem; }
+          .filter-buttons {
+            gap: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          }
+          .filter-btn { padding: 0.75rem 1rem; font-size: 0.875rem; text-align: center; }
         }
       `}</style>
     </div>
